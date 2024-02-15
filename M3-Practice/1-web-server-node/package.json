@@ -1,0 +1,17 @@
+{
+  "name": "1-web-server-node",
+  "version": "1.0.0",
+  "description": "El objetivo de esta tarea es crear un servidor HTTP utilizando Node.js que gestione diferentes rutas y consulte a la API JSONPlaceholder para obtener datos simulados.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node .",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}
