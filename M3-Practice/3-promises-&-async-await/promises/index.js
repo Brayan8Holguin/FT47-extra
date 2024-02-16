@@ -26,3 +26,12 @@ function errorHandler(error) {
 // catch(errorHandler)
 obtenerNumeroAleatorio().then(successHandler).catch(errorHandler);
 
+async function myFunctionAsync() {
+  try {
+    const numero = await obtenerNumeroAleatorio();
+    successHandler(numero);
+  } catch (error) {
+    errorHandler(error);
+  }
+}
+
