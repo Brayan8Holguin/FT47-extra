@@ -1,6 +1,7 @@
-const getCharById_API = require("../handlers/getCharById_API");
+const getCharById_API = require("../../handlers/getCharById_API");
 
-function getCharById(res, id) {
+function getCharById(req, res) {
+  const { id } = req.params;
   getCharById_API(id)
     .then((data) => {
       res.writeHead(200, { "Content-Type": "application/json" });

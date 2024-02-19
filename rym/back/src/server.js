@@ -1,4 +1,15 @@
-const http = require("http");
+//? Con express
+const express = require("express");
+const server = express();
+const router = require("./routes");
+
+server.use(express.json());
+server.use("/rickandmorty", router);
+
+module.exports = server;
+
+//? Con HTTP
+/* const http = require("http");
 const getCharById = require("./controllers/getCharById");
 
 const server = http.createServer((req, res) => {
@@ -16,6 +27,5 @@ const server = http.createServer((req, res) => {
     res.write(JSON.stringify({message: `La ruta ${req.url} no coincide con ninguna de las establecidas`}));
     res.end();
   }
-});
+}); */
 
-module.exports = server;
