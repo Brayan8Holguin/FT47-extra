@@ -1,52 +1,76 @@
-// Función que simula obtener datos de una API
-function obtenerDatosAPI() {
-  /* return new Promise((resolve, reject) => {
+function obtenerDatosAPI(swap = true) {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const datos = { nombre: "Juan", edad: 30 };
-      resolve(datos); 
+      if (swap) {
+        const datos = { name: "Feli", country: "Colombia" };
+        resolve(`Estos son los datos de la API: `, datos);
+      } else {
+        reject("Error del servidor 500");
+      }
     }, 2000);
-  }); */
-  return fetch('https://jsonplaceholder.typicode.com/posts').then(res => res.json() )
+  });
 }
 
-// Función que simula consultar una base de datos
-function consultarBaseDeDatos() {
+function consultarDatosDB(swap = true) {
   return new Promise((resolve, reject) => {
-    // Simulamos una tarea asíncrona
     setTimeout(() => {
-      const resultados = ["registro1", "registro2", "registro3"];
-      resolve(resultados); // Resolvemos la promesa con los datos consultados de la base de datos
+      if (swap) {
+        const products = [
+          { name: "Teclado", color: "white" },
+          { name: "Mouse", color: "white" },
+        ];
+        resolve(`Estos son los datos de la DB: `, products);
+      } else {
+        reject("No se encontraron datos");
+      }
     }, 1500);
   });
 }
 
-// Función que simula enviar una solicitud HTTP
-function enviarSolicitudHTTP() {
+function enviarSolicitudHTTP(swap = true) {
   return new Promise((resolve, reject) => {
-    // Simulamos una tarea asíncrona
     setTimeout(() => {
-      const respuesta = "Solicitud HTTP enviada correctamente";
-      resolve(respuesta); // Resolvemos la promesa con la respuesta de la solicitud HTTP
+      // enviamos la solicitud
+      if (swap) {
+        resolve("Solicitud enviada correctamente");
+      } else {
+        reject("Solicitud denegada");
+      }
     }, 3000);
   });
 }
 
-// Encadenar promesas
 obtenerDatosAPI()
-  .then((datos) => {
-    console.log("Datos obtenidos de la API:", datos);
-    return consultarBaseDeDatos(); // Devolvemos la promesa de consultar la base de datos
+  .then((res) => {
+    console.log(res);
+    return consultarDatosDB(false);
   })
-  .then((resultados) => {
-    console.log("Resultados de la base de datos:", resultados);
-    return enviarSolicitudHTTP(); // Devolvemos la promesa de enviar la solicitud HTTP
+  .then((data) => {
+    console.log(data);
+    return enviarSolicitudHTTP();
   })
-  .then((respuesta) => {
-    console.log("Respuesta de la solicitud HTTP:", respuesta);
+  .then((result) => {
+    console.log(result);
+  }).catch(err => {
+      console.log(err)
   })
-  .catch((error) => {
-    console.error("Error:", error); // Manejamos cualquier error que ocurra en alguna de las promesas
-  });
 
-// creemos una funcion para hacer una solicitud real HTTP
-  
+//Promise All
+
+Promise.all([obtenerDatosAPI(), consultarDatosDB(), enviarSolicitudHTTP()])
+    .then(res => {
+    console.log(res)
+    }).catch(err => {
+    console.log(err)
+})
+
+// Promise Race
+
+Promise.race([obtenerDatosAPI(), consultarDatosDB(false), enviarSolicitudHTTP()]).then(res => {
+    console.log(res)
+}).then(data => {
+    console.log(data)
+}).catch(err => {
+    console.log(err)
+})
+
