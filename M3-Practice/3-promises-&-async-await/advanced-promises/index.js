@@ -40,6 +40,7 @@ function enviarSolicitudHTTP(swap = true) {
   });
 }
 
+//? con promesas
 obtenerDatosAPI()
   .then((res) => {
     console.log(res);
@@ -55,22 +56,39 @@ obtenerDatosAPI()
       console.log(err)
   })
 
+//? con async await
+/* async function obtenerDatos() { 
+  try {
+    const datosApi = await obtenerDatosAPI();
+    console.log(datosApi);
+    const datosDB = await consultarDatosDB();
+    console.log(datosDB);
+    const resultHttp = await enviarSolicitudHTTP();
+    console.log(resultHttp);
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+obtenerDatos() */
+
+
 //Promise All
 
-Promise.all([obtenerDatosAPI(), consultarDatosDB(), enviarSolicitudHTTP()])
+/* Promise.all([obtenerDatosAPI(), consultarDatosDB(), enviarSolicitudHTTP()])
     .then(res => {
     console.log(res)
     }).catch(err => {
     console.log(err)
-})
+}) */
 
 // Promise Race
 
-Promise.race([obtenerDatosAPI(), consultarDatosDB(false), enviarSolicitudHTTP()]).then(res => {
+/* Promise.race([obtenerDatosAPI(), consultarDatosDB(false), enviarSolicitudHTTP()]).then(res => {
     console.log(res)
 }).then(data => {
     console.log(data)
 }).catch(err => {
     console.log(err)
-})
+}) */
 

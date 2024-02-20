@@ -24,8 +24,11 @@ function errorHandler(error) {
 // then(successHandler, errorHandler)
 // catch -> then(null, errorHandler)
 // catch(errorHandler)
+
+//? con promesas
 obtenerNumeroAleatorio().then(successHandler).catch(errorHandler);
 
+//? con async/await
 async function myFunctionAsync() {
   try {
     const numero = await obtenerNumeroAleatorio();
