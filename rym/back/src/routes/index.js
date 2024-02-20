@@ -20,7 +20,7 @@ router.get("/character/:id", getCharById);
 
 //? users
 
-router.get("/login", login);
+router.post("/login", login);
 
 router.post("/register", register);
 

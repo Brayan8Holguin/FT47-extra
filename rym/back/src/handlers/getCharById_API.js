@@ -24,10 +24,10 @@ const { API_KEY, API_URL_BASE } = process.env;
       return err;
     });
 } */
-  
+
 //? con async await
-  
-async function getCharById_API(id) { 
+
+async function getCharById_API(id) {
   try {
     const url = `${API_URL_BASE}/${id}?key=${API_KEY}`;
     const response = await fetch(url);
@@ -40,6 +40,7 @@ async function getCharById_API(id) {
       origin: data.origin.name,
       image: data.image,
       gender: data.gender,
+      location: data.location.name,
     };
     return character;
   } catch (error) {
